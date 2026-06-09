@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Practice Exam 1</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #141414;
+    --muted: #666666;
+    --border: #e5e5e5;
+    --accent: #0a6cff;
+    --nav-bg: #f7f8fb;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { min-height: 100%; }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+
+  header.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: .6rem 1rem;
+  }
+
+  .brandline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .75rem;
+    margin-bottom: .45rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .9rem;
+  }
+
+  nav#TOC {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+  }
+
+  #TOC ul, #TOC ol, #TOC li { display: contents; }
+
+  #TOC a {
+    text-decoration: none;
+    color: #1f2328;
+    padding: .35rem .6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 600;
+  }
+
+  #TOC a:hover,
+  #TOC a.active {
+    background: #eef4ff;
+    border-color: #c5d8ff;
+    color: var(--accent);
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .task {
+    display: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    background: #fff;
+  }
+
+  .task.active { display: block; }
+
+  .examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .example {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .75rem 1rem;
+    background: #fff;
+  }
+
+  pre {
+    padding: 1rem;
+    background: #f6f8fa;
+    border-radius: 8px;
+    overflow: auto;
+  }
+
+  code { border-radius: 4px; }
+</style>
+</head>
+<body id="top">
+  <header class="topbar" aria-label="Task navigation">
+    <div class="topbar-inner">
+      <div class="brandline">
+        <div class="brand">Practice Exam 1</div>
+        <div class="meta"></div>
+      </div>
+      <nav id="TOC"><ul>
+        <li><a href="#technical-details" id="toc-technical-details">Technical details</a></li>
+        <li><a href="#task-1-x86-64" id="toc-task-1-x86-64">Task 1 - x86-64</a></li>
+        <li><a href="#task-2-x86-64" id="toc-task-2-x86-64">Task 2 - x86-64</a></li>
+        <li><a href="#task-3-arm64" id="toc-task-3-arm64">Task 3 - ARM64</a></li>
+        <li><a href="#task-4-arm64" id="toc-task-4-arm64">Task 4 - ARM64</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section id="technical-details" class="level1">
+      <h1>Technical Details</h1>
+      <ul>
+        <li>Save all tasks in the folder created on the Desktop with your information.</li>
+        <li>The archive contains the files <code>1.cpp</code>, <code>2.cpp</code>, <code>3.cpp</code>, and <code>4.cpp</code>.</li>
+        <li>Changing the <code>.cpp</code> files is not allowed.</li>
+        <li>Create and implement the requested functions in the corresponding <code>.s</code> files.</li>
+        <li>You may use previously implemented functions in these tasks.</li>
+        <li>You may implement helper functions inside the <code>.s</code> files if you think they are needed.</li>
+      </ul>
+
+      <h2>Notes</h2>
+      <p>The exam contains two x86-64 assembly tasks (tasks 1 and 2) and two ARM64 assembly tasks (tasks 3 and 4).</p>
+
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="./cheatsheet_arm_en.html" target="_blank">ARM64 Cheatsheet</a></li>
+        <li><a href="./cheatsheet_x86-64_en.html" target="_blank">x86-64 Cheatsheet</a></li>
+      </ul>
+    </section>
+
+    <section id="task-1-x86-64" class="level1">
+      <h1>Task 1 - x86-64</h1>
+      <p>In the file <code>1.s</code>, implement the function:</p>
+      <pre><code>extern "C" int more_even_digits(long *a, int n);</code></pre>
+      <p>The function receives an array <code>a</code> of nonnegative integers of length <code>n</code>. Return the number of elements whose decimal representation has <strong>strictly more even digits than odd digits</strong>.</p>
+      <p>The digit <code>0</code> is considered even. The number <code>0</code> has one digit, namely <code>0</code>.</p>
+      <p>If <code>n &lt;= 0</code>, the function returns <code>0</code>.</p>
+      <p>The file <code>1.cpp</code> reads <code>n</code>, then <code>n</code> numbers on one line, calls the function, and prints the return value.</p>
+
+      <div class="examples">
+        <section class="example">
+          <h2>Example 1</h2>
+          <h3>Input:</h3>
+          <pre><code>5
+12 204 777 0 1357</code></pre>
+          <h3>Output:</h3>
+          <pre><code>2</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 2</h2>
+          <h3>Input:</h3>
+          <pre><code>3
+22 13 456</code></pre>
+          <h3>Output:</h3>
+          <pre><code>2</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 3</h2>
+          <h3>Input:</h3>
+          <pre><code>1
+7</code></pre>
+          <h3>Output:</h3>
+          <pre><code>0</code></pre>
+        </section>
+      </div>
+    </section>
+
+    <section id="task-2-x86-64" class="level1">
+      <h1>Task 2 - x86-64</h1>
+      <p>The following helper function is given in <code>2.cpp</code>:</p>
+      <pre><code>extern "C" void minmax(long *a, int n, long *pmin, long *pmax);</code></pre>
+      <p>For an array <code>a</code> of length <code>n &gt; 0</code>, <code>minmax</code> writes the smallest element to address <code>pmin</code> and the largest element to address <code>pmax</code>.</p>
+      <p>In the file <code>2.s</code>, implement the function:</p>
+      <pre><code>extern "C" int count_between_extremes(long *a, int n);</code></pre>
+      <p>The function returns the number of array elements that are <strong>strictly greater than the minimum</strong> and <strong>strictly less than the maximum</strong>. The variables for the minimum and maximum must be local variables on the stack. Global variables are not allowed.</p>
+      <p>If <code>n &lt;= 0</code>, the function returns <code>0</code>.</p>
+      <p>The file <code>2.cpp</code> reads <code>n</code>, then <code>n</code> numbers on one line, calls the function, and prints the return value.</p>
+
+      <div class="examples">
+        <section class="example">
+          <h2>Example 1</h2>
+          <h3>Input:</h3>
+          <pre><code>6
+5 1 7 3 7 2</code></pre>
+          <h3>Output:</h3>
+          <pre><code>3</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 2</h2>
+          <h3>Input:</h3>
+          <pre><code>5
+10 20 30 40 50</code></pre>
+          <h3>Output:</h3>
+          <pre><code>3</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 3</h2>
+          <h3>Input:</h3>
+          <pre><code>3
+5 5 5</code></pre>
+          <h3>Output:</h3>
+          <pre><code>0</code></pre>
+        </section>
+      </div>
+    </section>
+
+    <section id="task-3-arm64" class="level1">
+      <h1>Task 3 - ARM64</h1>
+      <p>In the file <code>3.s</code>, implement the function:</p>
+      <pre><code>extern "C" int clean_string(char *s);</code></pre>
+      <p>The function modifies the string <code>s</code> in place and returns the number of changed characters.</p>
+      <p>Modification rules:</p>
+      <ul>
+        <li>if the character is a digit from <code>'0'</code> to <code>'9'</code>, replace it with <code>'#'</code>;</li>
+        <li>if the character is an uppercase letter from <code>'A'</code> to <code>'Z'</code>, convert it to the corresponding lowercase letter;</li>
+        <li>all other characters remain unchanged.</li>
+      </ul>
+      <p>The string is terminated by the null character <code>'\0'</code>.</p>
+      <p>The file <code>3.cpp</code> reads one line of text, calls the function, prints the modified string, and then prints the number of changed characters.</p>
+
+      <div class="examples">
+        <section class="example">
+          <h2>Example 1</h2>
+          <h3>Input:</h3>
+          <pre><code>A1 bZ!</code></pre>
+          <h3>Output:</h3>
+          <pre><code>a# bz!
+3</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 2</h2>
+          <h3>Input:</h3>
+          <pre><code>Hello123</code></pre>
+          <h3>Output:</h3>
+          <pre><code>hello###
+4</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 3</h2>
+          <h3>Input:</h3>
+          <pre><code>abcdef</code></pre>
+          <h3>Output:</h3>
+          <pre><code>abcdef
+0</code></pre>
+        </section>
+      </div>
+    </section>
+
+    <section id="task-4-arm64" class="level1">
+      <h1>Task 4 - ARM64</h1>
+      <p>The following helper function is given in <code>4.cpp</code>:</p>
+      <pre><code>extern "C" int is_colorful(long x);</code></pre>
+      <p>A number is <strong>colorful</strong> if adjacent digits in its decimal representation always have different parity. A one-digit number is always colorful.</p>
+      <p>In the file <code>4.s</code>, implement the function:</p>
+      <pre><code>extern "C" long sum_colorful(long *a, int n);</code></pre>
+      <p>The function goes through all elements of the array and calls <code>is_colorful(a[i])</code> for each <code>a[i]</code> using the <code>bl</code> instruction. If <code>is_colorful</code> returns a nonzero value, <code>a[i]</code> is added to the sum. The function returns the obtained sum.</p>
+      <p>If <code>n &lt;= 0</code>, the function returns <code>0</code>. You may assume all elements are nonnegative.</p>
+      <p>The file <code>4.cpp</code> reads <code>n</code>, then <code>n</code> numbers on one line, calls the function, and prints the return value.</p>
+
+      <div class="examples">
+        <section class="example">
+          <h2>Example 1</h2>
+          <h3>Input:</h3>
+          <pre><code>6
+1234 1123 5050 248 7 135</code></pre>
+          <h3>Output:</h3>
+          <pre><code>6291</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 2</h2>
+          <h3>Input:</h3>
+          <pre><code>3
+1 2 3</code></pre>
+          <h3>Output:</h3>
+          <pre><code>6</code></pre>
+        </section>
+        <section class="example">
+          <h2>Example 3</h2>
+          <h3>Input:</h3>
+          <pre><code>1
+0</code></pre>
+          <h3>Output:</h3>
+          <pre><code>0</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+
+<script>
+(function() {
+  const sections = Array.from(document.querySelectorAll("section.level1"));
+  sections.forEach((section) => section.classList.add("task"));
+
+  function decodeFragment(value) {
+    const raw = (value || "").replace(/^#/, "");
+    try {
+      return decodeURIComponent(raw);
+    } catch (_error) {
+      return raw;
+    }
+  }
+
+  function showFromHash() {
+    let hash = decodeFragment(location.hash);
+    let shown = false;
+
+    sections.forEach((section) => {
+      const active = section.id === hash;
+      section.classList.toggle("active", active);
+      shown = shown || active;
+    });
+
+    if (!shown && sections.length > 0) {
+      hash = sections[0].id;
+      sections[0].classList.add("active");
+      history.replaceState(null, "", "#" + encodeURIComponent(hash));
+    }
+
+    document.querySelectorAll("#TOC a").forEach((link) => {
+      const target = decodeFragment(link.getAttribute("href"));
+      link.classList.toggle("active", target === hash);
+    });
+  }
+
+  showFromHash();
+  window.addEventListener("hashchange", showFromHash);
+})();
+</script>
+</body>
+</html>
+
