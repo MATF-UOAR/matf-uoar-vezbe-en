@@ -93,6 +93,10 @@ An animation is useful for following the concrete state of the stack frame and r
   <a href="assets/factorial-recursion-stack-registers.mp4">Watch the MP4 animation of the stack and register state.</a>
 </video>
 
+
+https://github.com/user-attachments/assets/bed8358c-188b-4c7d-8684-e044b726d49b
+
+
 In the animation the addresses are symbolic. The important values are: `edi`, which holds the argument value, `[rbp - 4]`, which holds the old `n` in each frame, and `eax`, which holds the result on return.
 
 ## Compilation
