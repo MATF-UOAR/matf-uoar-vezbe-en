@@ -10,7 +10,6 @@ solutions.
 - [Practice exam 1 solutions](./01-example/solutions/README.md)
 - [Practice exam 2](./02-example/statements/tasks.html)
 - [Practice exam 2 solutions](./02-example/solutions/README.md)
-- [Suggestions for exam tasks](./suggestions.md)
 
 ## Navigation
 
